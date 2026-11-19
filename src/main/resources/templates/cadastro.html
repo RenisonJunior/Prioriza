@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Criar conta | Prioriza</title>
+</head>
+<body>
+    <main>
+        <h1>Criar conta</h1>
+        <p>Comece organizando sua rotina.</p>
+
+        <p th:if="${erro}" th:text="${erro}"></p>
+
+        <form th:action="@{/cadastro}" th:object="${usuario}" method="post">
+            <label for="nome">Nome</label>
+            <input id="nome" type="text" th:field="*{nome}" required maxlength="100">
+
+            <label for="email">E-mail</label>
+            <input id="email" type="email" th:field="*{email}" required maxlength="150">
+
+            <label for="senha">Senha</label>
+            <input id="senha" type="password" th:field="*{senha}" required minlength="6">
+
+            <label for="minutos">Minutos disponíveis por dia</label>
+            <input id="minutos" type="number" th:field="*{minutosDisponiveis}"
+                   min="1" max="1440" required>
+
+            <button type="submit">Criar conta</button>
+        </form>
+
+        <p>Já possui conta? <a th:href="@{/login}">Entrar</a></p>
+    </main>
+</body>
+</html>
